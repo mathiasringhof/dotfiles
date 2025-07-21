@@ -24,6 +24,10 @@ bindkey '^W' backward-kill-dir
 autoload -Uz compinit
 compinit
 
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
 # use fzf-tab for completion 
 source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
 
