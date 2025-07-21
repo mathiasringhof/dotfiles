@@ -1,3 +1,8 @@
+# Performance optimization - compile .zshrc if needed
+if [[ ~/.zshrc -nt ~/.zshrc.zwc ]] || [[ ! -f ~/.zshrc.zwc ]]; then
+    zcompile ~/.zshrc
+fi
+
 safe_source() {
     [[ -f "$1" ]] && source "$1" || echo "Warning: $1 not found"
 }
@@ -22,8 +27,12 @@ bindkey '^W' backward-kill-dir
 
 # Use modern completion system
 autoload -Uz compinit
-compinit
-
+# Only run compinit once per day for performance
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C
+fi
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
@@ -62,6 +71,8 @@ source <(fzf --zsh)
 export EDITOR=nvim
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export GREP_OPTIONS='--color=auto'
+export CLICOLOR=1
 
 alias ll='eza -la --icons --git'
 alias la='eza -a --icons'
