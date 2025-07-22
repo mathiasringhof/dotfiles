@@ -3,10 +3,15 @@ if [[ ~/.zshrc -nt ~/.zshrc.zwc ]] || [[ ! -f ~/.zshrc.zwc ]]; then
     zcompile ~/.zshrc
 fi
 
+# Load source if available, echo warning if not
 safe_source() {
     [[ -f "$1" ]] && source "$1" || echo "Warning: $1 not found"
 }
 
+# set homebrew path in the beginning
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+
+# cd without cd, no duplicate history entries, write to history immediately
 setopt autocd histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
@@ -17,7 +22,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
-# Change Ctrl+W behavior to work like in fish/bash
+# Change Ctrl+W behavior to work more like in fish
 backward-kill-dir() {
     local WORDCHARS=${WORDCHARS/\/}
     zle backward-kill-word
@@ -25,7 +30,25 @@ backward-kill-dir() {
 zle -N backward-kill-dir
 bindkey '^W' backward-kill-dir
 
-# Use modern completion system
+# fzf shell integration
+source <(fzf --zsh)
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'"
+
+########################
+# AUTOCOMPLETE SECTION #
+########################
 autoload -Uz compinit
 # Only run compinit once per day for performance
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
@@ -33,14 +56,14 @@ if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
 else
     compinit -C
 fi
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
-
 # use fzf-tab for completion 
 source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
 
-### suggested configuration for fzf-tab
+safe_source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -53,20 +76,15 @@ zstyle ':completion:*' menu no
 # preview directory's content with eza when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # custom fzf flags
-# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
-# To make fzf-tab follow FZF_DEFAULT_OPTS.
-# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
-zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
-###
+zstyle ':fzf-tab:*' continuous-trigger '-'
 
-safe_source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Zoxide for quick jumping
 eval "$(zoxide init zsh --cmd j)"
+# Starship prompt
 eval "$(starship init zsh)"
-# eval "$(atuin init zsh)"
-source <(fzf --zsh)
 
 export EDITOR=nvim
 export LANG=en_US.UTF-8
@@ -74,8 +92,10 @@ export LC_ALL=en_US.UTF-8
 export GREP_OPTIONS='--color=auto'
 export CLICOLOR=1
 
-alias ll='eza -la --icons --git'
-alias la='eza -a --icons'
+# Aliases for ls using eza
+alias l='eza --icons'
+alias ll='eza -l --icons --git'
+alias la='eza -la --icons --git'
 alias lt='eza --tree --icons'
 
 safe_source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
