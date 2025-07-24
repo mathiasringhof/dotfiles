@@ -1,0 +1,1 @@
+/Users/mathias/.config/fish/conf.d/mathias.fish
