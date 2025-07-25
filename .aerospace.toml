@@ -153,8 +153,8 @@ alt-a = ['workspace-back-and-forth', 'mode main']
 
 slash = 'mode service'
 
-semicolon = ['resize smart -50', 'mode main']
-quote = ['resize smart +50', 'mode main']
+semicolon = ['resize smart +50']
+quote = ['resize smart -50']
 
 esc = 'mode main'
 1 = 'mode main'
@@ -167,8 +167,21 @@ x = 'mode main'
 c = 'mode main'
 v = 'mode main'
 
+# Check if Kitty is running. If yes, open a new window, if not start it.
 enter = [
-  'exec-and-forget /Applications/WezTerm.app/Contents/MacOS/wezterm',
+  '''exec-and-forget osascript -e '
+on is_running(appName)
+	tell application "System Events" to (name of processes) contains appName
+end is_running
+
+if not is_running("kitty") then
+	tell application "kitty" to activate
+else
+	tell application "System Events" to tell process "kitty"
+		click menu item "New OS Window" of menu 1 of menu bar item "Shell" of menu bar 1
+	end tell
+end if'
+''',
   'mode main',
 ]
 space = ['''exec-and-forget osascript -e '
