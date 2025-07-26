@@ -2,6 +2,7 @@ alias l 'eza --icons'
 alias ll 'eza -l --icons --git'
 alias la 'eza -la --icons --git'
 alias lt 'eza --tree --icons'
+alias vi nvim
 
 set PATH /opt/homebrew/bin /opt/local/bin /opt/local/sbin $PATH
 
