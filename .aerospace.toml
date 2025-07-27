@@ -162,7 +162,6 @@ esc = 'mode main'
 3 = 'mode main'
 4 = 'mode main'
 q = 'mode main'
-e = 'mode main'
 x = 'mode main'
 c = 'mode main'
 v = 'mode main'
@@ -189,4 +188,10 @@ tell application "Safari"
     make new document
     activate
 end tell'
+''', 'mode main']
+e = ['''exec-and-forget osascript -e '
+  tell application "Finder"
+    make new Finder window
+    activate
+  end tell'
 ''', 'mode main']
