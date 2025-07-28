@@ -11,8 +11,12 @@ set -gx LC_ALL "en_US.utf-8"
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 
-kubectl completion fish | source
-helm completion fish | source
+if type -q kubectl
+    kubectl completion fish | source
+end
+if type -q helm
+    helm completion fish | source
+end
 zoxide init fish --cmd j | source
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
