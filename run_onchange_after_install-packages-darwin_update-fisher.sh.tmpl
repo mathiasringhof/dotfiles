@@ -1,0 +1,11 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+# Update Fisher plugins after Fish installation
+if command -v fish &> /dev/null; then
+    echo "Updating Fisher plugins..."
+    fish -c "fisher update"
+else
+    echo "Fish shell not found, skipping Fisher update"
+fi
+{{ end -}}
