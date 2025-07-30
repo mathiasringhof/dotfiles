@@ -1,0 +1,72 @@
+tap "fluxcd/tap"
+tap "nikitabobko/tap"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
+# Checks ansible playbooks for practices and behaviour
+brew "ansible-lint"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Command-line DNS Client for Humans
+brew "doggo"
+# Modern, maintained replacement for ls
+brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Distributed revision control system
+brew "git"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Ping, but with a graph
+brew "gping"
+# Kubernetes package manager
+brew "helm"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Port scanning utility for large networks
+brew "nmap"
+# Platform built on V8 to build network applications
+brew "node"
+# Rsync for cloud storage
+brew "rclone"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Editor of encrypted files
+brew "sops"
+# Modern and pretty fancy file manager for the terminal
+brew "superfile"
+# Very fast implementation of tldr in Rust
+brew "tealdeer"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Internet file retriever
+brew "wget"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# Flux CLI
+brew "fluxcd/tap/flux"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "aerospace"
+# Menu bar manager
+cask "jordanbaird-ice"
+# GPU-based terminal emulator
+cask "kitty"
