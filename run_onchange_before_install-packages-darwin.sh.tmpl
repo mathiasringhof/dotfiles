@@ -1,3 +1,7 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --file=/dev/stdin <<EOF
 tap "fluxcd/tap"
 tap "nikitabobko/tap"
 # Interpreted, interactive, object-oriented programming language
@@ -70,3 +74,5 @@ cask "aerospace"
 cask "jordanbaird-ice"
 # GPU-based terminal emulator
 cask "kitty"
+EOF
+{{ end -}}
