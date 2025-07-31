@@ -1,4 +1,5 @@
 {{ if ne .chezmoi.os "darwin" }}
 .aerospace.toml
 ~/Library/Application\ Support/superfile/config.toml
+.config/karabiner/karabiner.json
 {{ end }}
