@@ -92,7 +92,7 @@ alt-a = 'mode active'
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 period = ['layout tiles horizontal vertical', 'mode main']
 comma = ['layout accordion horizontal vertical', 'mode main']
-slash = ['layout "tiles"', 'mode main']
+slash = ['layout floating tiles', 'mode main']
 f = ['fullscreen', 'mode main']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
@@ -197,3 +197,20 @@ e = ['''exec-and-forget osascript -e '
     activate
   end tell'
 ''', 'mode main']
+
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = ['move-node-to-workspace O']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = ['move-node-to-workspace O']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = ['move-node-to-workspace M']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Teams2'
+run = ['move-node-to-workspace M']
