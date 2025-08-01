@@ -92,6 +92,8 @@ alt-a = 'mode active'
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 period = ['layout tiles horizontal vertical', 'mode main']
 comma = ['layout accordion horizontal vertical', 'mode main']
+slash = ['layout "tiles"', 'mode main']
+f = ['fullscreen', 'mode main']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 h = ['focus left', 'mode main']
@@ -127,11 +129,15 @@ s = ['workspace 2', 'mode main']
 shift-s = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
 d = ['workspace 3', 'mode main']
 shift-d = ['move-node-to-workspace 3', 'workspace 3', 'mode main']
-f = ['workspace 4', 'mode main']
-shift-f = ['move-node-to-workspace 4', 'workspace 4', 'mode main']
+x = ['workspace 4', 'mode main']
+shift-x = ['move-node-to-workspace 4', 'workspace 4', 'mode main']
+c = ['workspace 5', 'mode main']
+shift-c = ['move-node-to-workspace 5', 'workspace 5', 'mode main']
 
 m = ['workspace M', 'mode main']
 shift-m = ['move-node-to-workspace M', 'workspace M', 'mode main']
+# n = ['workspace N', 'mode main']
+# shift-n = ['move-node-to-workspace N', 'workspace N', 'mode main']
 o = ['workspace O', 'mode main']
 shift-o = ['move-node-to-workspace O', 'workspace O', 'mode main']
 p = ['workspace P', 'mode main']
@@ -147,15 +153,11 @@ shift-r = ['move-node-to-workspace R', 'workspace R', 'mode main']
 n = ['workspace-back-and-forth', 'mode main']
 alt-a = ['workspace-back-and-forth', 'mode main']
 
-slash = 'mode service'
-
 semicolon = ['resize smart +50']
 quote = ['resize smart -50']
 
 esc = 'mode main'
 q = 'mode main'
-x = 'mode main'
-c = 'mode main'
 v = 'mode main'
 
 # Check if Kitty is running. If yes, open a new window, if not start it.
