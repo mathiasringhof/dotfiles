@@ -83,18 +83,18 @@ outer.right = 5
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-ctrl-alt-cmd-tab = ['workspace-back-and-forth']
+ctrl-shift-cmd-tab = ['workspace-back-and-forth']
 
-ctrl-alt-cmd-period = ['layout tiles horizontal vertical']
-ctrl-alt-cmd-comma = ['layout accordion horizontal vertical']
-ctrl-alt-cmd-slash = ['layout floating tiles']
-ctrl-alt-cmd-f = ['fullscreen']
+ctrl-shift-cmd-period = ['layout tiles horizontal vertical']
+ctrl-shift-cmd-comma = ['layout accordion horizontal vertical']
+ctrl-shift-cmd-slash = ['layout floating tiles']
+ctrl-shift-cmd-f = ['fullscreen']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-ctrl-alt-cmd-h = ['focus left']
-ctrl-alt-cmd-j = ['focus down']
-ctrl-alt-cmd-k = ['focus up']
-ctrl-alt-cmd-l = ['focus right']
+ctrl-shift-cmd-h = ['focus left']
+ctrl-shift-cmd-j = ['focus down']
+ctrl-shift-cmd-k = ['focus up']
+ctrl-shift-cmd-l = ['focus right']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 ctrl-alt-cmd-shift-h = ['move left']
@@ -102,53 +102,53 @@ ctrl-alt-cmd-shift-j = ['move down']
 ctrl-alt-cmd-shift-k = ['move up']
 ctrl-alt-cmd-shift-l = ['move right']
 
-ctrl-alt-cmd-left = ['join-with left']
-ctrl-alt-cmd-down = ['join-with down']
-ctrl-alt-cmd-up = ['join-with up']
-ctrl-alt-cmd-right = ['join-with right']
+ctrl-shift-cmd-left = ['join-with left']
+ctrl-shift-cmd-down = ['join-with down']
+ctrl-shift-cmd-up = ['join-with up']
+ctrl-shift-cmd-right = ['join-with right']
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 
-ctrl-alt-cmd-1 = ['workspace 1']
+ctrl-shift-cmd-1 = ['workspace 1']
 ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1']
-ctrl-alt-cmd-2 = ['workspace 2']
+ctrl-shift-cmd-2 = ['workspace 2']
 ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
-ctrl-alt-cmd-3 = ['workspace 3']
+ctrl-shift-cmd-3 = ['workspace 3']
 ctrl-alt-cmd-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
-ctrl-alt-cmd-4 = ['workspace 4']
+ctrl-shift-cmd-4 = ['workspace 4']
 ctrl-alt-cmd-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
-ctrl-alt-cmd-5 = ['workspace 5']
+ctrl-shift-cmd-5 = ['workspace 5']
 ctrl-alt-cmd-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
-ctrl-alt-cmd-a = ['workspace 1']
+ctrl-shift-cmd-a = ['workspace 1']
 ctrl-alt-cmd-shift-a = ['move-node-to-workspace 1', 'workspace 1']
-ctrl-alt-cmd-s = ['workspace 2']
+ctrl-shift-cmd-s = ['workspace 2']
 ctrl-alt-cmd-shift-s = ['move-node-to-workspace 2', 'workspace 2']
-ctrl-alt-cmd-d = ['workspace 3']
+ctrl-shift-cmd-d = ['workspace 3']
 ctrl-alt-cmd-shift-d = ['move-node-to-workspace 3', 'workspace 3']
-ctrl-alt-cmd-x = ['workspace 4']
+ctrl-shift-cmd-x = ['workspace 4']
 ctrl-alt-cmd-shift-x = ['move-node-to-workspace 4', 'workspace 4']
-ctrl-alt-cmd-c = ['workspace 5']
+ctrl-shift-cmd-c = ['workspace 5']
 ctrl-alt-cmd-shift-c = ['move-node-to-workspace 5', 'workspace 5']
 
-ctrl-alt-cmd-m = ['workspace M']
+ctrl-shift-cmd-m = ['workspace M']
 ctrl-alt-cmd-shift-m = ['move-node-to-workspace M', 'workspace M']
 # n = ['workspace N', 'mode main']
 # shift-n = ['move-node-to-workspace N', 'workspace N', 'mode main']
-ctrl-alt-cmd-o = ['workspace O']
+ctrl-shift-cmd-o = ['workspace O']
 ctrl-alt-cmd-shift-o = ['move-node-to-workspace O', 'workspace O']
-ctrl-alt-cmd-p = ['workspace P']
+ctrl-shift-cmd-p = ['workspace P']
 ctrl-alt-cmd-shift-p = ['move-node-to-workspace P', 'workspace P']
-ctrl-alt-cmd-w = ['workspace W']
+ctrl-shift-cmd-w = ['workspace W']
 ctrl-alt-cmd-shift-w = ['move-node-to-workspace W', 'workspace W']
-ctrl-alt-cmd-z = ['workspace Z']
+ctrl-shift-cmd-z = ['workspace Z']
 ctrl-alt-cmd-shift-z = ['move-node-to-workspace Z', 'workspace Z']
-ctrl-alt-cmd-r = ['workspace R']
+ctrl-shift-cmd-r = ['workspace R']
 ctrl-alt-cmd-shift-r = ['move-node-to-workspace R', 'workspace R']
 
-ctrl-alt-cmd-semicolon = ['resize smart +50']
-ctrl-alt-cmd-quote = ['resize smart -50']
+ctrl-shift-cmd-semicolon = ['resize smart +50']
+ctrl-shift-cmd-quote = ['resize smart -50']
 
 # Check if Kitty is running. If yes, open a new window, if not start it.
-ctrl-alt-cmd-enter = [
+ctrl-shift-cmd-enter = [
   '''exec-and-forget osascript -e '
 on is_running(appName)
 	tell application "System Events" to (name of processes) contains appName
@@ -164,7 +164,7 @@ end if'
 ''',
   'mode main',
 ]
-ctrl-alt-cmd-space = ['''exec-and-forget osascript -e '
+ctrl-shift-cmd-space = ['''exec-and-forget osascript -e '
 on is_running(appName)
 	tell application "System Events" to (name of processes) contains appName
 end is_running
@@ -178,7 +178,7 @@ else
 	end tell
 end if'
 ''', 'mode main']
-ctrl-alt-cmd-e = ['''exec-and-forget osascript -e '
+ctrl-shift-cmd-e = ['''exec-and-forget osascript -e '
   tell application "Finder"
     make new Finder window
     activate
