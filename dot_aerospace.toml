@@ -70,9 +70,6 @@ ctrl-alt-shift-cmd-tab = ['mode move']
 
 ctrl-alt-cmd-shift-n = ['workspace-back-and-forth']
 
-ctrl-alt-cmd-shift-period = ['layout tiles horizontal vertical']
-ctrl-alt-cmd-shift-comma = ['layout accordion horizontal vertical']
-ctrl-alt-cmd-shift-slash = ['layout floating tiles']
 ctrl-alt-cmd-shift-f = ['fullscreen']
 
 ctrl-alt-cmd-shift-h = ['focus left']
@@ -136,14 +133,14 @@ ctrl-alt-cmd-shift-e = ['''exec-and-forget osascript -e '
 ''', 'mode main']
 
 [mode.move.binding]
-a = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
-s = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
-d = ['move-node-to-workspace 3', 'workspace 3', 'mode main']
-w = ['move-node-to-workspace 4', 'workspace 4', 'mode main']
-q = ['move-node-to-workspace 5', 'workspace 5', 'mode main']
-m = ['move-node-to-workspace M', 'workspace M', 'mode main']
-o = ['move-node-to-workspace O', 'workspace O', 'mode main']
-z = ['move-node-to-workspace Z', 'workspace Z', 'mode main']
+a = ['move-node-to-workspace 1', 'workspace 1']
+s = ['move-node-to-workspace 2', 'workspace 2']
+d = ['move-node-to-workspace 3', 'workspace 3']
+w = ['move-node-to-workspace 4', 'workspace 4']
+q = ['move-node-to-workspace 5', 'workspace 5']
+m = ['move-node-to-workspace M', 'workspace M']
+o = ['move-node-to-workspace O', 'workspace O']
+z = ['move-node-to-workspace Z', 'workspace Z']
 
 h = ['move left']
 j = ['move down']
@@ -154,6 +151,10 @@ ctrl-alt-cmd-shift-h = ['join-with left']
 ctrl-alt-cmd-shift-j = ['join-with down']
 ctrl-alt-cmd-shift-k = ['join-with up']
 ctrl-alt-cmd-shift-l = ['join-with right']
+
+period = ['layout tiles horizontal vertical']
+comma = ['layout accordion horizontal vertical']
+slash = ['layout floating tiling']
 
 esc = 'mode main'
 
