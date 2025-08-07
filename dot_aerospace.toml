@@ -151,12 +151,17 @@ ctrl-alt-cmd-shift-h = ['join-with left']
 ctrl-alt-cmd-shift-j = ['join-with down']
 ctrl-alt-cmd-shift-k = ['join-with up']
 ctrl-alt-cmd-shift-l = ['join-with right']
+left = ['join-with left']
+down = ['join-with down']
+up = ['join-with up']
+right = ['join-with right']
 
 period = ['layout tiles horizontal vertical']
 comma = ['layout accordion horizontal vertical']
 slash = ['layout floating tiling']
 
 esc = 'mode main'
+space = 'mode main'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
