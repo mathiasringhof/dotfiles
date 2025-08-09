@@ -67,6 +67,7 @@ outer.right = 5
 # - Arrows.         left, down, up, right
 
 ctrl-alt-shift-cmd-tab = ['mode move']
+ctrl-alt-shift-cmd-space = ['mode move']
 
 ctrl-alt-cmd-shift-n = ['workspace-back-and-forth']
 
@@ -111,7 +112,7 @@ end if'
 ''',
   'mode main',
 ]
-ctrl-alt-cmd-shift-space = ['''exec-and-forget osascript -e '
+ctrl-alt-cmd-shift-b = ['''exec-and-forget osascript -e '
 on is_running(appName)
 	tell application "System Events" to (name of processes) contains appName
 end is_running
