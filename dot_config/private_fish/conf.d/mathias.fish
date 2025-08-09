@@ -11,6 +11,8 @@ set -gx LC_ALL "en_US.utf-8"
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 
+fish_vi_key_bindings
+
 if type -q kubectl
     kubectl completion fish | source
 end
@@ -19,18 +21,11 @@ if type -q helm
 end
 zoxide init fish --cmd j | source
 
-# Preview file content using bat (https://github.com/sharkdp/bat)
-export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target,Library,crypt
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-# CTRL-Y to copy the command into clipboard using pbcopy
-export FZF_CTRL_R_OPTS="
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'"
-# Print tree structure in the preview window
-export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target,Library,crypt
-  --preview 'tree -C {}'"
-fzf --fish | source
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
