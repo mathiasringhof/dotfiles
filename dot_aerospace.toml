@@ -174,3 +174,7 @@ run = ['move-node-to-workspace M']
 [[on-window-detected]]
 if.app-name-regex-substring = 'youtube'
 run = ['move-node-to-workspace Z']
+
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+run = ['move-node-to-workspace M']
