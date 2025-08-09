@@ -66,59 +66,36 @@ outer.right = 5
 #                   keypadMinus, keypadMultiply, keypadPlus
 # - Arrows.         left, down, up, right
 
-alt-tab = ['workspace-back-and-forth']
+ctrl-alt-shift-cmd-tab = ['mode move']
 
-alt-f = ['fullscreen']
+ctrl-alt-cmd-shift-n = ['workspace-back-and-forth']
 
-alt-h = ['focus left']
-alt-j = ['focus down']
-alt-k = ['focus up']
-alt-l = ['focus right']
+ctrl-alt-cmd-shift-f = ['fullscreen']
 
-alt-shift-h = ['move left']
-alt-shift-j = ['move down']
-alt-shift-k = ['move up']
-alt-shift-l = ['move right']
+ctrl-alt-cmd-shift-h = ['focus left']
+ctrl-alt-cmd-shift-j = ['focus down']
+ctrl-alt-cmd-shift-k = ['focus up']
+ctrl-alt-cmd-shift-l = ['focus right']
 
-alt-cmd-h = ['join-with left']
-alt-cmd-j = ['join-with down']
-alt-cmd-k = ['join-with up']
-alt-cmd-l = ['join-with right']
+ctrl-alt-cmd-shift-left = ['join-with left']
+ctrl-alt-cmd-shift-down = ['join-with down']
+ctrl-alt-cmd-shift-up = ['join-with up']
+ctrl-alt-cmd-shift-right = ['join-with right']
 
-alt-1 = ['workspace 1']
-alt-2 = ['workspace 2']
-alt-3 = ['workspace 3']
-alt-4 = ['workspace 4']
-alt-a = ['workspace 1']
-alt-s = ['workspace 2']
-alt-d = ['workspace 3']
-alt-w = ['workspace 4']
-alt-q = ['workspace 5']
-alt-m = ['workspace M']
-alt-o = ['workspace O']
-alt-z = ['workspace Z']
-alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
-alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
-alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
-alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
-alt-shift-a = ['move-node-to-workspace 1', 'workspace 1']
-alt-shift-s = ['move-node-to-workspace 2', 'workspace 2']
-alt-shift-d = ['move-node-to-workspace 3', 'workspace 3']
-alt-shift-w = ['move-node-to-workspace 4', 'workspace 4']
-alt-shift-q = ['move-node-to-workspace 5', 'workspace 5']
-alt-shift-m = ['move-node-to-workspace M', 'workspace M']
-alt-shift-o = ['move-node-to-workspace O', 'workspace O']
-alt-shift-z = ['move-node-to-workspace Z', 'workspace Z']
+ctrl-alt-cmd-shift-a = ['workspace 1']
+ctrl-alt-cmd-shift-s = ['workspace 2']
+ctrl-alt-cmd-shift-d = ['workspace 3']
+ctrl-alt-cmd-shift-w = ['workspace 4']
+ctrl-alt-cmd-shift-q = ['workspace 5']
+ctrl-alt-cmd-shift-m = ['workspace M']
+ctrl-alt-cmd-shift-o = ['workspace O']
+ctrl-alt-cmd-shift-z = ['workspace Z']
 
-alt-semicolon = ['resize smart +50']
-alt-quote = ['resize smart -50']
-
-alt-period = ['layout tiles horizontal vertical']
-alt-comma = ['layout accordion horizontal vertical']
-alt-slash = ['layout floating tiling']
+ctrl-alt-cmd-shift-semicolon = ['resize smart +50']
+ctrl-alt-cmd-shift-quote = ['resize smart -50']
 
 # Check if Kitty is running. If yes, open a new window, if not start it.
-alt-t = [
+ctrl-alt-cmd-shift-enter = [
   '''exec-and-forget osascript -e '
 on is_running(appName)
 	tell application "System Events" to (name of processes) contains appName
@@ -132,8 +109,9 @@ else
 	end tell
 end if'
 ''',
+  'mode main',
 ]
-alt-b = ['''exec-and-forget osascript -e '
+ctrl-alt-cmd-shift-space = ['''exec-and-forget osascript -e '
 on is_running(appName)
 	tell application "System Events" to (name of processes) contains appName
 end is_running
@@ -146,14 +124,54 @@ else
 		activate
 	end tell
 end if'
-''']
-alt-e = ['''exec-and-forget osascript -e '
+''', 'mode main']
+ctrl-alt-cmd-shift-e = ['''exec-and-forget osascript -e '
   tell application "Finder"
     make new Finder window
     activate
   end tell'
-''']
+''', 'mode main']
 
+[mode.move.binding]
+ctrl-alt-cmd-shift-a = ['move-node-to-workspace 1', 'workspace 1']
+ctrl-alt-cmd-shift-s = ['move-node-to-workspace 2', 'workspace 2']
+ctrl-alt-cmd-shift-d = ['move-node-to-workspace 3', 'workspace 3']
+ctrl-alt-cmd-shift-w = ['move-node-to-workspace 4', 'workspace 4']
+ctrl-alt-cmd-shift-q = ['move-node-to-workspace 5', 'workspace 5']
+ctrl-alt-cmd-shift-m = ['move-node-to-workspace M', 'workspace M']
+ctrl-alt-cmd-shift-o = ['move-node-to-workspace O', 'workspace O']
+ctrl-alt-cmd-shift-z = ['move-node-to-workspace Z', 'workspace Z']
+
+a = ['workspace 1']
+s = ['workspace 2']
+d = ['workspace 3']
+w = ['workspace 4']
+q = ['workspace 5']
+m = ['workspace M']
+o = ['workspace O']
+z = ['workspace Z']
+
+ctrl-alt-cmd-shift-h = ['move left']
+ctrl-alt-cmd-shift-j = ['move down']
+ctrl-alt-cmd-shift-k = ['move up']
+ctrl-alt-cmd-shift-l = ['move right']
+
+h = ['focus left']
+j = ['focus down']
+k = ['focus up']
+l = ['focus right']
+
+left = ['join-with left']
+down = ['join-with down']
+up = ['join-with up']
+right = ['join-with right']
+
+period = ['layout tiles horizontal vertical']
+comma = ['layout accordion horizontal vertical']
+slash = ['layout floating tiling']
+
+esc = 'mode main'
+space = 'mode main'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
