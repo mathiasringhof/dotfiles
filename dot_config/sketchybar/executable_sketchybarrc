@@ -69,12 +69,6 @@ sketchybar --add bracket spaces '/space\..*/' \
 # We add some regular items to the left side of the bar, where
 # only the properties deviating from the current defaults need to be set
 
-sketchybar --add alias "Control Center,MenuBar" left \
-           --set "Control Center,MenuBar" icon.drawing=off \
-                                         label.drawing=off \
-                                         background.padding_left=5 \
-                                         background.padding_right=5 \
-                                         click_script="open /System/Library/CoreServices/Menu\ Extras/User.menu"
 
 sketchybar --add item front_app left \
            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
