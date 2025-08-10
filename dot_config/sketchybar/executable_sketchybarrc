@@ -12,7 +12,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=30 blur_radius=30 color=0x40000000
+sketchybar --bar position=top height=30 blur_radius=0 color=0x00000000
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -30,6 +30,10 @@ default=(
   icon.padding_right=4
   label.padding_left=4
   label.padding_right=4
+  background.color=0x44ffffff
+  background.corner_radius=5
+  background.height=20
+  background.drawing=on
 )
 sketchybar --default "${default[@]}"
 
@@ -39,29 +43,32 @@ for sid in $(aerospace list-workspaces --all); do
     sketchybar --add item space.$sid left \
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
-        background.color=0x44ffffff \
-        background.corner_radius=5 \
-        background.height=20 \
         background.drawing=off \
         label="$sid" \
         click_script="aerospace workspace $sid" \
         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
 
+sketchybar --add event aerospace_mode_change
+
+sketchybar --add bracket spaces '/space\..*/' \
+           --subscribe spaces aerospace_mode_change \
+           --set spaces \
+           background.corner_radius=7 \
+           background.height=24 \
+           script="$PLUGIN_DIR/aerospace_bracket.sh"
+
 
 ##### Adding Left Items #####
 # We add some regular items to the left side of the bar, where
 # only the properties deviating from the current defaults need to be set
 
-sketchybar --add event aerospace_mode_change
 sketchybar --add item chevron left \
-           --subscribe chevron aerospace_mode_change \
            --set chevron icon= label.drawing=off \
              background.color=0x44ffffff \
              background.corner_radius=5 \
              background.height=20 \
              background.drawing=off \
-             script="$PLUGIN_DIR/aerospace_mode.sh" \
            --add item front_app left \
            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
