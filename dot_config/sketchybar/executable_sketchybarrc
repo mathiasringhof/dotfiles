@@ -5,6 +5,9 @@
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
+# Source color palette
+source "$CONFIG_DIR/colors.sh"
+
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
 # These are only some of the options available. For all options see:
@@ -12,7 +15,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=30 blur_radius=0 color=0x00000000
+sketchybar --bar position=top height=30 blur_radius=0 color=$TRANSPARENT
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -24,17 +27,17 @@ default=(
   padding_right=2
   icon.font="JetBrainsMono Nerd Font:Bold:17.0"
   label.font="JetBrainsMono Nerd Font:Bold:14.0"
-  icon.color=0xffa9b1d6
-  label.color=0xffa9b1d6
+  icon.color=$ICON_COLOR
+  label.color=$LABEL_COLOR
   icon.padding_left=4
   icon.padding_right=4
   label.padding_left=4
   label.padding_right=4
-  background.color=0xe616161e
+  background.color=$BAR_COLOR
   background.corner_radius=5
   background.height=28
   background.drawing=on
-  background.border_color=0xff3d59a1
+  background.border_color=$BORDER_COLOR
   background.border_width=1
 )
 sketchybar --default "${default[@]}"
@@ -60,7 +63,7 @@ sketchybar --add event aerospace_mode_change
 sketchybar --add bracket spaces '/space\..*/' \
            --subscribe spaces aerospace_mode_change \
            --set spaces \
-           background.border_color=0xff3d59a1 \
+           background.border_color=$BORDER_COLOR \
            background.border_width=1 \
            script="$PLUGIN_DIR/aerospace_bracket.sh"
 

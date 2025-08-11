@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Source color palette
+source "$CONFIG_DIR/colors.sh"
+
 # Script to control the bracket border based on aerospace mode
 # The bracket surrounds all workspace items and provides visual indication
 # when in "move" mode with blinking border effect
@@ -7,8 +10,8 @@
 CURRENT_MODE=$(aerospace list-modes --current)
 
 # Tokyo Night colors
-BLUE_BORDER=0xff3d59a1
-ORANGE_BORDER=0xffff9e64
+BLUE_BORDER=$BORDER_COLOR
+ORANGE_BORDER=$ORANGE
 
 if [ "$CURRENT_MODE" = "move" ]; then
   # Increase border width to 2px and start blinking sequence
