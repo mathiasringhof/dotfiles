@@ -1,6 +1,6 @@
-# Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
   'exec-and-forget borders active_color=0xFF7AA2F7 inactive_color=0xFF292E42 width=5.0 whitelist=kitty',
+  'exec-and-forget sketchybar',
 ]
 start-at-login = true
 
