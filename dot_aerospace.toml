@@ -1,5 +1,5 @@
 after-startup-command = [
-  'exec-and-forget borders active_color=0xFF7AA2F7 inactive_color=0xFF292E42 width=5.0 whitelist=kitty',
+  'exec-and-forget borders active_color=0xFF7AA2F7 inactive_color=0x0000000 width=5.0',
   'exec-and-forget sketchybar',
 ]
 start-at-login = true
@@ -53,7 +53,7 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 5
 outer.bottom = 5
-outer.top = 38
+outer.top = 35
 outer.right = 5
 
 [workspace-to-monitor-force-assignment]
