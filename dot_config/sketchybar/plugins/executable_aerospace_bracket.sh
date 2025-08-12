@@ -10,18 +10,17 @@ source "$CONFIG_DIR/colors.sh"
 CURRENT_MODE=$(aerospace list-modes --current)
 
 # Tokyo Night colors
-BLUE_BORDER=$BORDER_COLOR
-ORANGE_BORDER=$ORANGE
+DEFAULT_BORDER=$BAR_BORDER_COLOR
+HIGHLIGHT_BORDER=$(getcolor orange)
 
 if [ "$CURRENT_MODE" = "move" ]; then
   # Increase border width to 2px and start blinking sequence
   # Sequence: thicker border + blue -> orange -> blue -> orange (final)
   sketchybar --set "$NAME" background.border_width=2
-  sketchybar --animate linear 12 --set "$NAME" background.border_color="$ORANGE_BORDER" \
-             --animate linear 12 --set "$NAME" background.border_color="$BLUE_BORDER" \
-             --animate linear 12 --set "$NAME" background.border_color="$ORANGE_BORDER"
+  sketchybar --animate linear 12 --set "$NAME" background.border_color="$HIGHLIGHT_BORDER" \
+    --animate linear 12 --set "$NAME" background.border_color="$DEFAULT_BORDER" \
+    --animate linear 12 --set "$NAME" background.border_color="$HIGHLIGHT_BORDER"
 else
   # Return to normal: 1px blue border
-  sketchybar --set "$NAME" background.border_width=1 background.border_color="$BLUE_BORDER"
+  sketchybar --set "$NAME" background.border_width=1 background.border_color="$DEFAULT_BORDER"
 fi
-
