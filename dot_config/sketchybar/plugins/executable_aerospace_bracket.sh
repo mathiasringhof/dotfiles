@@ -16,8 +16,9 @@ HIGHLIGHT_BORDER=$(getcolor orange)
 if [ "$CURRENT_MODE" = "move" ]; then
   # Increase border width to 2px and start blinking sequence
   # Sequence: thicker border + blue -> orange -> blue -> orange (final)
-  sketchybar --set "$NAME" background.border_width=2
-  sketchybar --animate linear 12 --set "$NAME" background.border_color="$HIGHLIGHT_BORDER" \
+  sketchybar \
+    --set "$NAME" background.border_width=2 \
+    --animate linear 12 --set "$NAME" background.border_color="$HIGHLIGHT_BORDER" \
     --animate linear 12 --set "$NAME" background.border_color="$DEFAULT_BORDER" \
     --animate linear 12 --set "$NAME" background.border_color="$HIGHLIGHT_BORDER"
 else
