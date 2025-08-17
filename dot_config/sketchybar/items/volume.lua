@@ -28,25 +28,20 @@ local volume_slider = sbar.add("slider", "volume_slider", 100, {
 local volume_icon = sbar.add("item", "volume_icon", {
 	position = "right",
 	icon = {
-		string = icons.volume._100,
-		width = 0,
-		align = "left",
-		color = colors.white,
+		drawing = false,
+	},
+	label = {
+		drawing = true,
+		align = "center",
+		width = 30,
 		font = {
 			style = "Regular",
 			size = settings.icon_font_size,
 		},
 	},
-	label = {
-		width = 25,
-		align = "left",
-		font = {
-			style = "Regular",
-			size = settings.label_font_size,
-		},
-	},
 	background = {
 		drawing = false,
+		padding_right = 0,
 	},
 })
 

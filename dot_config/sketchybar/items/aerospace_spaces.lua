@@ -1,6 +1,9 @@
 local colors = require("colors")
 local settings = require("settings")
 
+local COLOR_SPACE_LABEL = colors.label_color_muted
+local COLOR_SPACE_FOCUSED = colors.highlight
+
 local function parse_listworkspaces_output(output)
 	local lines = output:gmatch("([^:\n]+):([^\n]+)")
 
@@ -14,7 +17,7 @@ local function parse_listworkspaces_output(output)
 end
 
 local function add_workspace_to_bar(workspace_id, is_focused)
-	local label_color = is_focused and colors.highlight or colors.label_color_muted
+	local label_color = is_focused and COLOR_SPACE_FOCUSED or COLOR_SPACE_LABEL
 	local space = sbar.add("item", "space." .. workspace_id, {
 		position = "left",
 		background = {
@@ -42,14 +45,14 @@ local function generate_workspacechange_function(workspace, is_focused)
 			prev_in_focus = true
 			workspace:set({
 				label = {
-					color = colors.highlight,
+					color = COLOR_SPACE_FOCUSED,
 				},
 			})
 		elseif prev_in_focus then
 			prev_in_focus = false
 			workspace:set({
 				label = {
-					color = colors.label_color,
+					color = COLOR_SPACE_LABEL,
 				},
 			})
 		end
@@ -65,7 +68,7 @@ local function add_spaces_bracket(spaces)
 		position = "left",
 		blur_radius = 32,
 		background = {
-			drawing = "on",
+			drawing = true,
 			color = colors.bar_color,
 			border_color = colors.bar_border_color,
 			height = settings.bar_height - 6,

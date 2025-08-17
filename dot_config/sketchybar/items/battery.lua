@@ -4,14 +4,22 @@ local settings = require("settings")
 local battery = sbar.add("item", "battery", {
 	position = "right",
 	icon = {
+		drawing = false,
+	},
+	label = {
+		drawing = true,
+		align = "center",
+		width = 40,
 		font = {
+			style = "Regular",
 			size = settings.icon_font_size,
 		},
 	},
-	label = { drawing = false },
 	update_freq = 120,
 	background = {
 		drawing = false,
+		padding_left = 0,
+		padding_right = 0,
 	},
 })
 
@@ -49,7 +57,7 @@ local function battery_update()
 			icon = is_charging and icons.battery_charging._0 or icons.battery._0
 		end
 
-		battery:set({ icon = icon })
+		battery:set({ label = icon })
 	end)
 end
 
