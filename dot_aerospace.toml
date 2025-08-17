@@ -76,7 +76,7 @@ outer.right = 5
 # ctrl-alt-shift-cmd-tab = ['mode move']
 ctrl-alt-shift-cmd-space = [
   'mode move',
-  'exec-and-forget sketchybar --trigger aerospace_mode_change',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=move',
 ]
 
 ctrl-alt-cmd-shift-n = ['workspace-back-and-forth']
@@ -210,11 +210,11 @@ slash = ['layout floating tiling']
 
 esc = [
   'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_mode_change',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main',
 ]
 space = [
   'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_mode_change',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main',
 ]
 
 
