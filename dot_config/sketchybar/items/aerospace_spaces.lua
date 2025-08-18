@@ -38,7 +38,7 @@ local function add_workspace_to_bar(workspace_id, is_focused)
 	return space
 end
 
-local function generate_workspacechange_function(workspace, is_focused)
+local function generate_workspace_change_function(workspace, is_focused)
 	local prev_in_focus = is_focused
 	return function(env)
 		if env.FOCUSED_WORKSPACE == workspace.id then
@@ -56,6 +56,12 @@ local function generate_workspacechange_function(workspace, is_focused)
 				},
 			})
 		end
+	end
+end
+
+local function generate_workspace_click_function(workspace)
+	return function(_)
+		sbar.exec("aerospace workspace " .. workspace.id)
 	end
 end
 
@@ -103,7 +109,8 @@ sbar.exec(
 		for workspace_id, is_focused in parse_listworkspaces_output(list_workspaces_output) do
 			local space = add_workspace_to_bar(workspace_id, is_focused)
 			table.insert(spaces, space)
-			space:subscribe("aerospace_workspace_change", generate_workspacechange_function(space, is_focused))
+			space:subscribe("aerospace_workspace_change", generate_workspace_change_function(space, is_focused))
+			space:subscribe("mouse.clicked", generate_workspace_click_function(space))
 		end
 		local spaces_bracket = add_spaces_bracket(spaces)
 		spaces_bracket:subscribe("aerospace_mode_change", generate_modechange_function(spaces_bracket))
