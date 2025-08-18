@@ -86,7 +86,7 @@ local function rebuild_icons(spaces)
 	sbar.exec("aerospace list-windows --all --format %{app-name}:%{workspace}", function(window_list)
 		local icon_lists = parse_iconlist_by_workspace(window_list)
 		for workspace_id, workspace in pairs(spaces) do
-			local icon_list = icon_lists[workspace_id]
+			local icon_list = icon_lists[workspace_id] or ""
 			workspace:set({
 				label = {
 					string = icon_list,
@@ -143,24 +143,48 @@ local function add_spaces_bracket(spaces)
 			border_color = colors.bar_border_color,
 			height = settings.bar_height - 6,
 			corner_radius = settings.corner_radius,
+			border_width = 1,
 		},
 	})
 end
 
 local function generate_modechange_function(bracket)
+	local original_borderwidth = 1 -- TODO: should be able to parse from bracket:query()
+	local highlight_borderwidth = original_borderwidth + 1
 	return function(env)
-		local highlight_border = env.MODE == "move"
-		if highlight_border then
+		local is_highlight_border = env.MODE == "move"
+		if is_highlight_border then
 			sbar.animate("linear", 8.0, function()
-				bracket:set({ background = { border_width = 3, border_color = colors.get_color("orange", 100) } })
-				bracket:set({ background = { border_width = 1, border_color = colors.get_color("black", 100) } })
-				bracket:set({ background = { border_width = 3, border_color = colors.get_color("orange", 100) } })
-				bracket:set({ background = { border_width = 1, border_color = colors.get_color("black", 100) } })
-				bracket:set({ background = { border_width = 3, border_color = colors.get_color("orange", 100) } })
+				bracket:set({
+					background = {
+						border_width = highlight_borderwidth,
+						border_color = colors.get_color("orange", 100),
+					},
+				})
+				bracket:set({
+					background = { border_width = original_borderwidth, border_color = colors.get_color("black", 100) },
+				})
+				bracket:set({
+					background = {
+						border_width = highlight_borderwidth,
+						border_color = colors.get_color("orange", 100),
+					},
+				})
+				bracket:set({
+					background = { border_width = original_borderwidth, border_color = colors.get_color("black", 100) },
+				})
+				bracket:set({
+					background = {
+						border_width = highlight_borderwidth,
+						border_color = colors.get_color("orange", 100),
+					},
+				})
 			end)
 		else
 			sbar.animate("tanh", 12.0, function()
-				bracket:set({ background = { border_width = 1, border_color = colors.get_color("black", 100) } })
+				bracket:set({
+					background = { border_width = original_borderwidth, border_color = colors.get_color("black", 100) },
+				})
 			end)
 		end
 	end
