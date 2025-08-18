@@ -1,5 +1,6 @@
 local colors = require("colors")
 local settings = require("settings")
+local icon_map = require("helpers.icon_map")
 
 local COLOR_SPACE_LABEL = colors.label_color_muted
 local COLOR_SPACE_FOCUSED = colors.highlight
@@ -24,18 +25,75 @@ local function add_workspace_to_bar(workspace_id, is_focused)
 			drawing = "off",
 		},
 		icon = {
-			padding_left = 8,
+			padding_left = 4,
 			padding_right = 0,
+			color = label_color,
+			font = {
+				size = settings.label_font_size,
+				style = "bold",
+			},
+			string = workspace_id,
 		},
 		label = {
-			padding_left = 0,
-			padding_right = 8,
-			string = workspace_id,
+			padding_left = 8,
+			padding_right = 4,
 			color = label_color,
+			font = {
+				family = "sketchybar-app-font",
+				style = "regular",
+				size = settings.icon_font_size,
+			},
 		},
 	})
 	space.id = workspace_id
 	return space
+end
+
+local function parse_iconlist_by_workspace(output)
+	local workspace_apps = {}
+
+	for app, workspace in output:gmatch("([^:\n]+):([^\n]+)") do
+		workspace_apps[workspace] = workspace_apps[workspace] or {}
+
+		-- Simple deduplication check
+		local already_exists = false
+		for _, existing_app in ipairs(workspace_apps[workspace]) do
+			if existing_app == app then
+				already_exists = true
+				break
+			end
+		end
+
+		if not already_exists then
+			table.insert(workspace_apps[workspace], app)
+		end
+	end
+
+	-- Convert to icon strings
+	local result = {}
+	for workspace, apps in pairs(workspace_apps) do
+		local icons = {}
+		for _, app in ipairs(apps) do
+			table.insert(icons, icon_map[app] or ":default:")
+		end
+		result[workspace] = table.concat(icons, "")
+	end
+
+	return result
+end
+
+local function rebuild_icons(spaces)
+	sbar.exec("aerospace list-windows --all --format %{app-name}:%{workspace}", function(window_list)
+		local icon_lists = parse_iconlist_by_workspace(window_list)
+		for workspace_id, workspace in pairs(spaces) do
+			local icon_list = icon_lists[workspace_id]
+			workspace:set({
+				label = {
+					string = icon_list,
+				},
+			})
+		end
+	end)
 end
 
 local function generate_workspace_change_function(workspace, is_focused)
@@ -44,6 +102,9 @@ local function generate_workspace_change_function(workspace, is_focused)
 		if env.FOCUSED_WORKSPACE == workspace.id then
 			prev_in_focus = true
 			workspace:set({
+				icon = {
+					color = COLOR_SPACE_FOCUSED,
+				},
 				label = {
 					color = COLOR_SPACE_FOCUSED,
 				},
@@ -51,6 +112,9 @@ local function generate_workspace_change_function(workspace, is_focused)
 		elseif prev_in_focus then
 			prev_in_focus = false
 			workspace:set({
+				icon = {
+					color = COLOR_SPACE_LABEL,
+				},
 				label = {
 					color = COLOR_SPACE_LABEL,
 				},
@@ -102,17 +166,25 @@ local function generate_modechange_function(bracket)
 	end
 end
 
+local function generate_focuschange_function(spaces)
+	return function(_)
+		rebuild_icons(spaces)
+	end
+end
+
 sbar.exec(
 	'aerospace list-workspaces --format "%{workspace}:%{workspace-is-focused}" --all',
 	function(list_workspaces_output)
 		local spaces = {}
 		for workspace_id, is_focused in parse_listworkspaces_output(list_workspaces_output) do
 			local space = add_workspace_to_bar(workspace_id, is_focused)
-			table.insert(spaces, space)
+			spaces[workspace_id] = space
 			space:subscribe("aerospace_workspace_change", generate_workspace_change_function(space, is_focused))
 			space:subscribe("mouse.clicked", generate_workspace_click_function(space))
 		end
 		local spaces_bracket = add_spaces_bracket(spaces)
 		spaces_bracket:subscribe("aerospace_mode_change", generate_modechange_function(spaces_bracket))
+		spaces_bracket:subscribe("aerospace_focus_change", generate_focuschange_function(spaces))
+		rebuild_icons(spaces)
 	end
 )
