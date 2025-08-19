@@ -91,7 +91,7 @@ return {
 	get_color = get_color,
 
 	bar_color = get_color("black", 50),
-	bar_border_color = get_color("black", 0),
+	bar_border_color = get_color("grey", 75),
 	highlight = get_color("cyan"),
 	highlight_75 = get_color("cyan", 75),
 	highlight_50 = get_color("cyan", 50),
