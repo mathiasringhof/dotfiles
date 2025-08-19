@@ -100,7 +100,7 @@ return {
 	icon_color = get_color("white"),
 	icon_color_inactive = get_color("white", 25),
 	label_color = get_color("white", 100),
-	label_color_muted = get_color("white", 75),
+	label_color_muted = get_color("white", 50),
 	label_color_negative = get_color("black"),
 	popup_background_color = get_color("black", 75),
 	popup_border_color = get_color("black", 0),

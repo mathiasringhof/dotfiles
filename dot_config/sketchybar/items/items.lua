@@ -1,2 +1,6 @@
 require("items.status_block")
-require("items.aerospace_spaces")
+local add_spaces = require("items.aerospace_spaces")
+local add_front_app = require("items.front_app")
+add_spaces(function()
+	add_front_app()
+end)

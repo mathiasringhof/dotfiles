@@ -4,6 +4,7 @@ local icon_map = require("helpers.icon_map")
 local blink_border = require("helpers.blink_border")
 
 local COLOR_SPACE_LABEL = colors.label_color_muted
+local COLOR_SPACE_ICON = colors.label_color
 local COLOR_SPACE_FOCUSED = colors.highlight
 
 local function parse_listworkspaces_output(output)
@@ -20,6 +21,7 @@ end
 
 local function add_workspace_to_bar(workspace_id, is_focused)
 	local label_color = is_focused and COLOR_SPACE_FOCUSED or COLOR_SPACE_LABEL
+	local icon_color = is_focused and COLOR_SPACE_FOCUSED or COLOR_SPACE_ICON
 	local space = sbar.add("item", "space." .. workspace_id, {
 		position = "left",
 		background = {
@@ -28,7 +30,7 @@ local function add_workspace_to_bar(workspace_id, is_focused)
 		icon = {
 			padding_left = 4,
 			padding_right = 0,
-			color = label_color,
+			color = icon_color,
 			font = {
 				size = settings.label_font_size,
 				style = "bold",
@@ -87,7 +89,7 @@ local function rebuild_icons(spaces)
 	sbar.exec("aerospace list-windows --all --format %{app-name}:%{workspace}", function(window_list)
 		local icon_lists = parse_iconlist_by_workspace(window_list)
 		for workspace_id, workspace in pairs(spaces) do
-			local icon_list = icon_lists[workspace_id] or ""
+			local icon_list = icon_lists[workspace_id] or "-"
 			sbar.animate("tanh", 24.0, function()
 				workspace:set({
 					label = {
@@ -116,7 +118,7 @@ local function generate_workspace_change_function(workspace, is_focused)
 			prev_in_focus = false
 			workspace:set({
 				icon = {
-					color = COLOR_SPACE_LABEL,
+					color = COLOR_SPACE_ICON,
 				},
 				label = {
 					color = COLOR_SPACE_LABEL,
@@ -182,19 +184,22 @@ local function generate_focuschange_function(spaces)
 	end
 end
 
-sbar.exec(
-	'aerospace list-workspaces --format "%{workspace}:%{workspace-is-focused}" --all',
-	function(list_workspaces_output)
-		local spaces = {}
-		for workspace_id, is_focused in parse_listworkspaces_output(list_workspaces_output) do
-			local space = add_workspace_to_bar(workspace_id, is_focused)
-			spaces[workspace_id] = space
-			space:subscribe("aerospace_workspace_change", generate_workspace_change_function(space, is_focused))
-			space:subscribe("mouse.clicked", generate_workspace_click_function(space))
+return function(callback)
+	sbar.exec(
+		'aerospace list-workspaces --format "%{workspace}:%{workspace-is-focused}" --all',
+		function(list_workspaces_output)
+			local spaces = {}
+			for workspace_id, is_focused in parse_listworkspaces_output(list_workspaces_output) do
+				local space = add_workspace_to_bar(workspace_id, is_focused)
+				spaces[workspace_id] = space
+				space:subscribe("aerospace_workspace_change", generate_workspace_change_function(space, is_focused))
+				space:subscribe("mouse.clicked", generate_workspace_click_function(space))
+			end
+			local spaces_bracket = add_spaces_bracket(spaces)
+			spaces_bracket:subscribe("aerospace_mode_change", generate_modechange_function(spaces_bracket))
+			spaces_bracket:subscribe("aerospace_focus_change", generate_focuschange_function(spaces))
+			rebuild_icons(spaces)
+			callback()
 		end
-		local spaces_bracket = add_spaces_bracket(spaces)
-		spaces_bracket:subscribe("aerospace_mode_change", generate_modechange_function(spaces_bracket))
-		spaces_bracket:subscribe("aerospace_focus_change", generate_focuschange_function(spaces))
-		rebuild_icons(spaces)
-	end
-)
+	)
+end
