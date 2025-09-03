@@ -83,45 +83,51 @@ ctrl-alt-shift-cmd-space = [
   'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=move',
 ]
 
-ctrl-alt-cmd-shift-n = ['workspace-back-and-forth']
+alt-f = ['fullscreen']
+alt-g = ['layout floating tiling']
+alt-z = ['flatten-workspace-tree']
 
-ctrl-alt-cmd-shift-f = ['fullscreen']
-ctrl-alt-cmd-shift-g = ['layout floating tiling']
-ctrl-alt-cmd-shift-y = ['flatten-workspace-tree']
+alt-s = ['layout tiles horizontal vertical']
+alt-d = ['layout accordion horizontal vertical']
 
-ctrl-alt-cmd-shift-u = ['layout tiles horizontal vertical']
-ctrl-alt-cmd-shift-i = ['layout accordion horizontal vertical']
+alt-h = ['focus left']
+alt-j = ['focus down']
+alt-k = ['focus up']
+alt-l = ['focus right']
+alt-shift-h = ['move left']
+alt-shift-j = ['move down']
+alt-shift-k = ['move up']
+alt-shift-l = ['move right']
 
-ctrl-alt-cmd-shift-h = ['focus left']
-ctrl-alt-cmd-shift-j = ['focus down']
-ctrl-alt-cmd-shift-k = ['focus up']
-ctrl-alt-cmd-shift-l = ['focus right']
+alt-left = ['join-with left']
+alt-down = ['join-with down']
+alt-up = ['join-with up']
+alt-right = ['join-with right']
 
-ctrl-alt-cmd-shift-left = ['join-with left']
-ctrl-alt-cmd-shift-down = ['join-with down']
-ctrl-alt-cmd-shift-up = ['join-with up']
-ctrl-alt-cmd-shift-right = ['join-with right']
+alt-1 = ['workspace 1']
+alt-2 = ['workspace 2']
+alt-3 = ['workspace 3']
+alt-4 = ['workspace 4']
+alt-5 = ['workspace 5']
+alt-6 = ['workspace 6']
+alt-m = ['workspace M']
+alt-i = ['workspace I']
+alt-y = ['workspace Y']
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+alt-shift-m = ['move-node-to-workspace M', 'workspace M']
+alt-shift-i = ['move-node-to-workspace I', 'workspace I']
+alt-shift-y = ['move-node-to-workspace Y', 'workspace Y']
 
-ctrl-alt-cmd-shift-a = ['workspace 1']
-ctrl-alt-cmd-shift-s = ['workspace 2']
-ctrl-alt-cmd-shift-d = ['workspace 3']
-ctrl-alt-cmd-shift-w = ['workspace 4']
-ctrl-alt-cmd-shift-q = ['workspace 5']
-ctrl-alt-cmd-shift-1 = ['workspace 1']
-ctrl-alt-cmd-shift-2 = ['workspace 2']
-ctrl-alt-cmd-shift-3 = ['workspace 3']
-ctrl-alt-cmd-shift-4 = ['workspace 4']
-ctrl-alt-cmd-shift-5 = ['workspace 5']
-ctrl-alt-cmd-shift-6 = ['workspace 6']
-ctrl-alt-cmd-shift-m = ['workspace M']
-ctrl-alt-cmd-shift-o = ['workspace O']
-ctrl-alt-cmd-shift-z = ['workspace Z']
-
-ctrl-alt-cmd-shift-semicolon = ['resize smart +50']
-ctrl-alt-cmd-shift-quote = ['resize smart -50']
+alt-semicolon = ['resize smart +50']
+alt-quote = ['resize smart -50']
 
 # Check if Kitty is running. If yes, open a new window, if not start it.
-ctrl-alt-cmd-shift-enter = [
+alt-enter = [
   '''exec-and-forget osascript -e '
 on is_running(appName)
 	tell application "System Events" to (name of processes) contains appName
@@ -137,7 +143,7 @@ end if'
 ''',
   'mode main',
 ]
-ctrl-alt-cmd-shift-b = ['''exec-and-forget osascript -e '
+alt-b = ['''exec-and-forget osascript -e '
 on is_running(appName)
 	tell application "System Events" to (name of processes) contains appName
 end is_running
@@ -151,98 +157,34 @@ else
 	end tell
 end if'
 ''', 'mode main']
-ctrl-alt-cmd-shift-e = ['''exec-and-forget osascript -e '
+alt-e = ['''exec-and-forget osascript -e '
   tell application "Finder"
     make new Finder window
     activate
   end tell'
 ''', 'mode main']
 
-[mode.move.binding]
-a = ['move-node-to-workspace 1', 'workspace 1']
-s = ['move-node-to-workspace 2', 'workspace 2']
-d = ['move-node-to-workspace 3', 'workspace 3']
-w = ['move-node-to-workspace 4', 'workspace 4']
-q = ['move-node-to-workspace 5', 'workspace 5']
-1 = ['move-node-to-workspace 1', 'workspace 1']
-2 = ['move-node-to-workspace 2', 'workspace 2']
-3 = ['move-node-to-workspace 3', 'workspace 3']
-4 = ['move-node-to-workspace 4', 'workspace 4']
-5 = ['move-node-to-workspace 5', 'workspace 5']
-6 = ['move-node-to-workspace 6', 'workspace 6']
-m = ['move-node-to-workspace M', 'workspace M']
-o = ['move-node-to-workspace O', 'workspace O']
-z = ['move-node-to-workspace Z', 'workspace Z']
-
-ctrl-alt-cmd-shift-a = ['workspace 1']
-ctrl-alt-cmd-shift-s = ['workspace 2']
-ctrl-alt-cmd-shift-d = ['workspace 3']
-ctrl-alt-cmd-shift-w = ['workspace 4']
-ctrl-alt-cmd-shift-q = ['workspace 5']
-ctrl-alt-cmd-shift-1 = ['workspace 1']
-ctrl-alt-cmd-shift-2 = ['workspace 2']
-ctrl-alt-cmd-shift-3 = ['workspace 3']
-ctrl-alt-cmd-shift-4 = ['workspace 4']
-ctrl-alt-cmd-shift-5 = ['workspace 5']
-ctrl-alt-cmd-shift-6 = ['workspace 6']
-ctrl-alt-cmd-shift-m = ['workspace M']
-ctrl-alt-cmd-shift-o = ['workspace O']
-ctrl-alt-cmd-shift-z = ['workspace Z']
-
-h = ['move left']
-j = ['move down']
-k = ['move up']
-l = ['move right']
-
-ctrl-alt-cmd-shift-h = ['focus left']
-ctrl-alt-cmd-shift-j = ['focus down']
-ctrl-alt-cmd-shift-k = ['focus up']
-ctrl-alt-cmd-shift-l = ['focus right']
-
-shift-h = ['join-with left']
-shift-j = ['join-with down']
-shift-k = ['join-with up']
-shift-l = ['join-with right']
-
-left = ['join-with left']
-down = ['join-with down']
-up = ['join-with up']
-right = ['join-with right']
-
-period = ['layout tiles horizontal vertical']
-comma = ['layout accordion horizontal vertical']
-slash = ['layout floating tiling']
-
-esc = [
-  'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main',
-]
-space = [
-  'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main',
-]
-
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
-run = ['move-node-to-workspace O']
+run = ['move-node-to-workspace M']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = ['move-node-to-workspace O']
+run = ['move-node-to-workspace M']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
-run = ['move-node-to-workspace M']
+run = ['move-node-to-workspace I']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Teams2'
-run = ['move-node-to-workspace M']
+run = ['move-node-to-workspace I']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'youtube'
-run = ['move-node-to-workspace Z']
+run = ['move-node-to-workspace Y']
 
 [[on-window-detected]]
 if.app-id = 'org.whispersystems.signal-desktop'
-run = ['move-node-to-workspace M']
+run = ['move-node-to-workspace I']
