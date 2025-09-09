@@ -13,6 +13,7 @@ exec-on-workspace-change = [
 
 on-focus-changed = [
   'exec-and-forget sketchybar --trigger aerospace_focus_change',
+  'move-mouse window-lazy-center',
 ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
@@ -77,7 +78,8 @@ outer.right = 5
 #                   keypadMinus, keypadMultiply, keypadPlus
 # - Arrows.         left, down, up, right
 
-# ctrl-alt-shift-cmd-tab = ['mode move']
+cmd-m = [] # Disable "hide application"
+
 ctrl-alt-shift-cmd-space = [
   'mode move',
   'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=move',
@@ -85,10 +87,10 @@ ctrl-alt-shift-cmd-space = [
 
 alt-f = ['fullscreen']
 alt-g = ['layout floating tiling']
-alt-z = ['flatten-workspace-tree']
+alt-r = ['flatten-workspace-tree']
 
-alt-s = ['layout tiles horizontal vertical']
-alt-d = ['layout accordion horizontal vertical']
+alt-d = ['layout tiles horizontal vertical']
+alt-c = ['layout accordion horizontal vertical']
 
 alt-h = ['focus left']
 alt-j = ['focus down']
