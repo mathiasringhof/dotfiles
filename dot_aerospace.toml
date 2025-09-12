@@ -88,6 +88,7 @@ ctrl-alt-shift-cmd-space = [
 alt-f = ['fullscreen']
 alt-g = ['layout floating tiling']
 alt-r = ['flatten-workspace-tree']
+alt-z = ['workspace-back-and-forth']
 
 alt-d = ['layout tiles horizontal vertical']
 alt-c = ['layout accordion horizontal vertical']
