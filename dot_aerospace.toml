@@ -12,8 +12,7 @@ exec-on-workspace-change = [
 ]
 
 on-focus-changed = [
-  'exec-and-forget sketchybar --trigger aerospace_focus_change',
-  'move-mouse window-lazy-center',
+  'exec-and-forget sketchybar --trigger aerospace_focus_change'
 ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
