@@ -57,7 +57,11 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 5
 outer.bottom = 5
+{{- if eq .chezmoi.hostname "mBA2021" }}
+outer.top = [{ monitor.built-in = 35 }, 35]
+{{- else }}
 outer.top = [{ monitor.built-in = 5 }, 35]
+{{- end }}
 outer.right = 5
 
 [workspace-to-monitor-force-assignment]
