@@ -2,11 +2,10 @@
 #!/bin/bash
 
 brew bundle --file=/dev/stdin <<EOF
-tap "fluxcd/tap"
 tap "nikitabobko/tap"
 tap "FelixKratz/formulae"
 # Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
+brew "python@3.14"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
 # Checks ansible playbooks for practices and behaviour
@@ -33,16 +32,10 @@ brew "git"
 brew "gnupg"
 # Ping, but with a graph
 brew "gping"
-# Kubernetes package manager
-brew "helm"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Kubernetes CLI To Manage Your Clusters In Style!
-brew "k9s"
-# Kubernetes command-line interface
-brew "kubernetes-cli"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Powerful, lightweight programming language
@@ -51,8 +44,6 @@ brew "lua"
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
-# Platform built on V8 to build network applications
-brew "node"
 # Rsync for cloud storage
 brew "rclone"
 # Search tool like grep and The Silver Searcher
@@ -75,8 +66,6 @@ brew "yq"
 brew "yt-dlp"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# Flux CLI
-brew "fluxcd/tap/flux"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "aerospace"
 # JetBrainsMono Nerd Font families (JetBrains Mono)
@@ -85,5 +74,16 @@ cask "font-jetbrains-mono-nerd-font"
 cask "jordanbaird-ice"
 # GPU-based terminal emulator
 cask "kitty"
+{{- if ne .chezmoi.hostname "DE2LA-0GVF7QM" -}}
+tap "fluxcd/tap"
+# Flux CLI
+brew "fluxcd/tap/flux"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Kubernetes package manager
+brew "helm"
+{{ end }}
 EOF
 {{ end -}}
