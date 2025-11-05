@@ -74,7 +74,7 @@ cask "font-jetbrains-mono-nerd-font"
 cask "jordanbaird-ice"
 # GPU-based terminal emulator
 cask "kitty"
-{{- if ne .chezmoi.hostname "DE2LA-0GVF7QM" -}}
+{{ if ne .chezmoi.hostname "DE2LA-0GVF7QM" -}}
 tap "fluxcd/tap"
 # Flux CLI
 brew "fluxcd/tap/flux"
