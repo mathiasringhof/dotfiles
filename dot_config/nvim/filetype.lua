@@ -2,5 +2,6 @@
 vim.filetype.add({
   extension = {
     bu = "yaml",
+    hujson = "javascript",
   },
 })
