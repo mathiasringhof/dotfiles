@@ -169,6 +169,9 @@ alt-e = ['''exec-and-forget osascript -e '
   end tell'
 ''', 'mode main']
 
+[[on-window-detected]]
+if.workspace = '6'
+run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
@@ -197,3 +200,4 @@ run = ['move-node-to-workspace I']
 [[on-window-detected]]
 if.app-id = 'com.playstation.RemotePlay'
 run = ['layout floating', 'move-node-to-workspace 6']
+
