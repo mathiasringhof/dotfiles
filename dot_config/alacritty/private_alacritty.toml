@@ -38,6 +38,18 @@ bindings = [
   { key = "Key8", mods = "Command", chars = "\u00028" },
   { key = "Key9", mods = "Command", chars = "\u00029" },
   { key = "T", mods = "Command", chars = "\u0002c" },
+  # Override Alacritty's default macOS Cmd+H => Hide binding.
+  { key = "H", mods = "Command", action = "None" },
+  # Cmd+hjkl => tmux prefix (Ctrl-Space) + AeroSpace-style pane focus
+  { key = "H", mods = "Command", chars = "\u0000h" },
+  { key = "J", mods = "Command", chars = "\u0000j" },
+  { key = "K", mods = "Command", chars = "\u0000k" },
+  { key = "L", mods = "Command", chars = "\u0000l" },
+  # Cmd+Shift+hjkl => tmux prefix (Ctrl-Space) + pane move
+  { key = "H", mods = "Command|Shift", chars = "\u0000H" },
+  { key = "J", mods = "Command|Shift", chars = "\u0000J" },
+  { key = "K", mods = "Command|Shift", chars = "\u0000K" },
+  { key = "L", mods = "Command|Shift", chars = "\u0000L" },
   { key = "W", mods = "Command", command = { program = "/bin/sh", args = ["-lc", "~/.config/alacritty/tmux-close-or-tmux.sh"] } },
   { key = "W", mods = "Command|Shift", chars = "\u0002d" },
   { key = "Return", mods = "Shift", chars = "\u001B\r" },
