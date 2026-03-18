@@ -28,6 +28,15 @@ return function()
 		cal:set({ icon = date, label = time })
 	end
 
+	local open_notifications =
+		[[osascript -e 'tell application "System Events" to keystroke "n" using {command down, option down, control down}']]
+	cal:subscribe("mouse.clicked", function(env)
+		-- Optional: Only trigger on left click
+		-- if env.BUTTON == "left" then
+		sbar.exec(open_notifications)
+		-- end
+	end)
+
 	cal:subscribe("routine", update)
 	cal:subscribe("forced", update)
 

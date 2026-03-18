@@ -6,24 +6,29 @@ exec >>"$LOG" 2>&1
 
 echo "---- $(date) ----"
 
-# Cmd+W handler for Alacritty.
+# Cmd+W handler for terminal (Alacritty / kitty).
 # - If the front window is a tmux client: kill the current tmux window.
-# - Otherwise: close the Alacritty window by sending SIGHUP to its shell.
+# - Otherwise: close the terminal window by sending SIGHUP to its shell.
 #
 # Requires the shell (fish_title) and tmux (set-titles-string) to include
 # the TTY path (e.g. /dev/ttys004) in the window title.
 
-# 1) Read the front Alacritty window title.
+# 1) Detect which terminal is frontmost and read its window title.
 TITLE="$(
   osascript <<'APPLESCRIPT'
 tell application "System Events"
-  tell process "Alacritty"
-    try
-      return name of front window
-    on error
-      return ""
-    end try
-  end tell
+  set frontApp to name of first application process whose frontmost is true
+  if frontApp is "Alacritty" or frontApp is "kitty" then
+    tell process frontApp
+      try
+        return name of front window
+      on error
+        return ""
+      end try
+    end tell
+  else
+    return ""
+  end if
 end tell
 APPLESCRIPT
 )"

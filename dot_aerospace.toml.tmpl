@@ -132,9 +132,9 @@ alt-shift-y = ['move-node-to-workspace Y', 'workspace Y']
 alt-period = ['resize smart +50']
 alt-comma = ['resize smart -50']
 
-# Check if Kitty is running. If yes, open a new window, if not start it.
+# Check if kitty is running. If yes, open a new window, if not start it.
 alt-enter = [
-  'exec-and-forget /Applications/Alacritty.app/Contents/MacOS/alacritty msg create-window -e /opt/homebrew/bin/tmux new-session || open -a Alacritty -n --args -e /opt/homebrew/bin/tmux new-session',
+  'exec-and-forget kitty @ launch --type=os-window -- ~/.config/kitty/tmux-session-picker 2>/dev/null || open -na kitty --args -e ~/.config/kitty/tmux-session-picker',
   'mode main',
 ]
 alt-b = ['''exec-and-forget osascript -e '

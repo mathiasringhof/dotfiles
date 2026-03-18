@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+if ! tmux ls >/dev/null 2>&1; then
+  exec tmux new-session -s main
+fi
+
+session=$( (tmux list-sessions -F '#S' | grep '^main$'; tmux list-sessions -F '#S' | grep -v '^main$') | fzf --prompt="tmux session> " )
+if [ -n "$session" ]; then
+  exec tmux attach -t "$session"
+else
+  exec tmux new-session -s main
+fi
