@@ -1,11 +1,28 @@
 #!/usr/bin/env bash
-if ! tmux ls >/dev/null 2>&1; then
-  exec tmux new-session -s main
+set -euo pipefail
+
+main_session="main"
+
+if ! tmux has-session -t "$main_session" >/dev/null 2>&1; then
+  exec tmux new-session -s "$main_session"
 fi
 
-session=$( (tmux list-sessions -F '#S' | grep '^main$'; tmux list-sessions -F '#S' | grep -v '^main$') | fzf --prompt="tmux session> " )
+set +e
+session="$(
+  {
+    printf '%s\n' "$main_session"
+    tmux list-sessions -F '#S' | grep -vx "$main_session" || true
+  } | fzf --prompt='tmux session> '
+)"
+fzf_status=$?
+set -e
+
 if [ -n "$session" ]; then
   exec tmux attach -t "$session"
-else
-  exec tmux new-session -s main
 fi
+
+if [ "$fzf_status" -ne 0 ]; then
+  exec tmux new-session
+fi
+
+exec tmux new-session

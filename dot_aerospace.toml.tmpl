@@ -132,9 +132,9 @@ alt-shift-y = ['move-node-to-workspace Y', 'workspace Y']
 alt-period = ['resize smart +50']
 alt-comma = ['resize smart -50']
 
-# Check if kitty is running. If yes, open a new window, if not start it.
+# Start kitty if needed; otherwise create a new OS window in the existing process.
 alt-enter = [
-  'exec-and-forget kitty @ launch --type=os-window -- ~/.config/kitty/tmux-session-picker 2>/dev/null || open -na kitty --args -e ~/.config/kitty/tmux-session-picker',
+  'exec-and-forget kitty --single-instance -e ~/.config/kitty/tmux-session-picker',
   'mode main',
 ]
 alt-b = ['''exec-and-forget osascript -e '
@@ -189,4 +189,3 @@ run = ['move-node-to-workspace I']
 [[on-window-detected]]
 if.app-id = 'com.playstation.RemotePlay'
 run = ['layout floating', 'move-node-to-workspace 6']
-
