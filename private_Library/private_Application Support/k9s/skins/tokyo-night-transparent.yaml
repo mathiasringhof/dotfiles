@@ -1,0 +1,69 @@
+# Tokyo Night skin with transparent primary backgrounds.
+k9s:
+  body:
+    fgColor: "#c8d3f5"
+    bgColor: default
+    logoColor: "#82aaff"
+  prompt:
+    fgColor: "#c8d3f5"
+    bgColor: default
+    suggestColor: "#65bcff"
+  info:
+    fgColor: "#828bb8"
+    sectionColor: "#82aaff"
+  help:
+    fgColor: "#c8d3f5"
+    bgColor: default
+    keyColor: "#86e1fc"
+    numKeyColor: "#c099ff"
+    sectionColor: "#636da6"
+  frame:
+    border:
+      fgColor: "#3b4261"
+      focusColor: "#82aaff"
+    menu:
+      fgColor: "#828bb8"
+      fgStyle: dim
+      keyColor: "#86e1fc"
+      numKeyColor: "#c099ff"
+    crumbs:
+      fgColor: "#c8d3f5"
+      bgColor: "#2f334d"
+      activeColor: "#82aaff"
+    status:
+      newColor: "#65bcff"
+      modifyColor: "#ffc777"
+      addColor: "#c3e88d"
+      errorColor: "#ff757f"
+      highlightColor: "#82aaff"
+      killColor: "#636da6"
+      completedColor: "#636da6"
+    title:
+      fgColor: "#c8d3f5"
+      bgColor: default
+      highlightColor: "#82aaff"
+      counterColor: "#c099ff"
+      filterColor: "#c3e88d"
+  views:
+    table:
+      fgColor: "#c8d3f5"
+      bgColor: default
+      cursorFgColor: "#1e2030"
+      cursorBgColor: "#636da6"
+      markColor: "#636da6"
+      header:
+        fgColor: "#86e1fc"
+        bgColor: default
+        sorterColor: "#ffc777"
+    yaml:
+      keyColor: "#86e1fc"
+      colonColor: "#636da6"
+      valueColor: "#c8d3f5"
+    logs:
+      fgColor: "#c8d3f5"
+      bgColor: default
+      indicator:
+        fgColor: "#82aaff"
+        bgColor: default
+        toggleOnColor: "#c3e88d"
+        toggleOffColor: "#636da6"
