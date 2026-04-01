@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -eu
+
+src="${HOME}/.local/share/terminfo/tmux-256color.src"
+
+if ! command -v tic >/dev/null 2>&1; then
+  echo "tic not found, skipping tmux-256color terminfo compile"
+  exit 0
+fi
+
+if [ ! -f "$src" ]; then
+  echo "terminfo source not found at $src, skipping"
+  exit 0
+fi
+
+mkdir -p "${HOME}/.terminfo"
+tic -x -o "${HOME}/.terminfo" "$src"
