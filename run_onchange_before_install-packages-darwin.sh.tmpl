@@ -76,11 +76,14 @@ brew "zoxide"
 cask "nikitabobko/tap/aerospace"
 # JetBrainsMono Nerd Font families (JetBrains Mono)
 cask "font-jetbrains-mono-nerd-font"
+cask "font-sketchybar-app-font"
 # Menu bar manager
 cask "jordanbaird-ice"
 # GPU-based terminal emulator
 cask "kitty"
-{{ if ne .chezmoi.hostname "DE2LA-0GVF7QM" -}}
+brew "starship"
+brew "eugene1g/safehouse/agent-safehouse"
+{{ if and (ne .chezmoi.hostname "DE2LA-0GVF7QM") (ne .chezmoi.hostname "S-L2FQ94NW21") -}}
 tap "fluxcd/tap"
 # Flux CLI
 brew "fluxcd/tap/flux"
@@ -91,8 +94,6 @@ brew "kubernetes-cli"
 # Kubernetes package manager
 brew "helm"
 brew "snitch"
-brew "starship"
-brew "eugene1g/safehouse/agent-safehouse"
 {{ end }}
 EOF
 {{ end -}}
