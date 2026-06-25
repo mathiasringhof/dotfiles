@@ -4,7 +4,6 @@ alias la 'eza -la --icons --git'
 alias lt 'eza --tree --icons'
 alias vi nvim
 alias s 'kitten ssh'
-alias p 'safehouse pi'
 
 set PATH /opt/homebrew/bin /opt/local/bin /opt/local/sbin $PATH
 
