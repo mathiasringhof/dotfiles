@@ -3,6 +3,7 @@ local add_front_app = require("items.front_app")
 
 local add_calendar = require("items.calendar")
 local add_battery = require("items.battery")
+local add_wifi = require("items.wifi")
 local add_volume = require("items.volume")
 local add_right_bracket = require("items.right_bracket")
 
@@ -14,6 +15,7 @@ end)
 -- Right side
 local calendar = add_calendar()
 local battery = add_battery()
+local wifi = add_wifi()
 local volume = add_volume()
-local item_names = { calendar.name, battery.name, volume.volume_slider.name, volume.volume_icon.name }
+local item_names = { calendar.name, battery.name, wifi.name, volume.volume_slider.name, volume.volume_icon.name }
 add_right_bracket(item_names)
