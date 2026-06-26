@@ -1,0 +1,43 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+# Grant passwordless `wdutil info` so the sketchybar wifi item can read the
+# signal strength (RSSI) without a password prompt.
+#
+# Background: macOS 14.4+ removed the `airport` binary and stopped
+# `networksetup -getairportnetwork` from reporting the SSID. The wifi item now
+# reads association/SSID from `ipconfig getsummary` and RSSI from `wdutil info`
+# -- and `wdutil info` requires root. Without this rule the icon still works
+# but falls back to showing full bars whenever connected.
+set -eu
+
+sudoers_file="/etc/sudoers.d/sketchybar-wdutil"
+rule="{{ .chezmoi.username }} ALL=(root) NOPASSWD: /usr/bin/wdutil info"
+
+if [ ! -x /usr/bin/wdutil ]; then
+  echo "wdutil not found, skipping sketchybar wifi sudoers setup"
+  exit 0
+fi
+
+# Already working? `wdutil info` is exactly what the rule grants, so if this
+# succeeds non-interactively the rule is in place -- exit without a sudo prompt.
+if sudo -n /usr/bin/wdutil info >/dev/null 2>&1; then
+  echo "passwordless wdutil already configured for sketchybar wifi"
+  exit 0
+fi
+
+echo "Configuring passwordless wdutil for sketchybar wifi (requires sudo)..."
+tmp="$(mktemp)"
+printf '%s\n' "$rule" >"$tmp"
+
+# Validate before installing so a typo can never wedge sudo.
+if ! sudo visudo -cf "$tmp"; then
+  echo "sudoers rule failed validation, aborting" >&2
+  rm -f "$tmp"
+  exit 1
+fi
+
+sudo install -m 0440 -o root -g wheel "$tmp" "$sudoers_file"
+rm -f "$tmp"
+echo "Installed $sudoers_file"
+{{- end }}
